@@ -7,7 +7,7 @@ export async function GET(request:Request){
   const auth=await requireAdmin(request);
   if("error" in auth) return NextResponse.json({error:auth.error},{status:auth.status});
   const db=auth.admin;
-  const [r,p,i,t,e,pay,a]=await Promise.all([
+  const [r,p,i,t,e,pay,a,tm]=await Promise.all([
     db.from("registrations").select("*").order("created_at",{ascending:false}),
     db.from("participants").select("*"),
     db.from("institutions").select("*"),
@@ -16,8 +16,8 @@ export async function GET(request:Request){
     db.from("payment_records").select("*"),
     db.from("accommodation_requests").select("*")
   ]);
-  if([r,p,i,t,e,pay,a].some(x=>x.error)) return NextResponse.json({error:"Export query failed. Check database setup."},{status:500});
-  const registrations=r.data||[],participants=p.data||[],institutions=i.data||[],teams=t.data||[],events=e.data||[],payments=pay.data||[],accommodation=a.data||[];
+  if([r,p,i,t,e,pay,a,tm].some(x=>x.error)) return NextResponse.json({error:"Export query failed. Check database setup."},{status:500});
+  const registrations=r.data||[],participants=p.data||[],institutions=i.data||[],teams=t.data||[],events=e.data||[],payments=pay.data||[],accommodation=a.data||[],memberships=tm.data||[];
   const byId=(items:any[],id:string)=>items.find(x=>x.id===id);
   const safe=(v:unknown)=>typeof v==="string"&&/^[=+\-@\t\r]/.test(v)?"'"+v:v??"";
   const wb=new ExcelJS.Workbook(); wb.creator="MOSAIC-MONTAGE 2026";wb.created=new Date();
