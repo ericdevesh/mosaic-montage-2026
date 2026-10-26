@@ -1,10 +1,52 @@
-export default function AdminPage() {
-  return <main className="container section" style={{maxWidth:850}}>
+"use client";
+
+import { ChangeEvent, useEffect, useState } from "react";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+
+type Summary={registrations:number;participants:number;colleges:number;teams:number;pendingPayments:number;pendingVerification:number;accommodation:number};
+type ImportResult={row:number;status:string;detail:string};
+
+export default function AdminPage(){
+  const [client,setClient]=useState<SupabaseClient|null>(null);
+  const [email,setEmail]=useState("");const [password,setPassword]=useState("");
+  const [token,setToken]=useState("");const [userEmail,setUserEmail]=useState("");
+  const [summary,setSummary]=useState<Summary|null>(null);const [message,setMessage]=useState("");
+  const [busy,setBusy]=useState(false);const [file,setFile]=useState<File|null>(null);
+  const [importResults,setImportResults]=useState<ImportResult[]>([]);
+  useEffect(()=>{
+    const url=process.env.NEXT_PUBLIC_SUPABASE_URL,anon=process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if(url&&anon){
+      const c=createClient(url,anon);setClient(c);
+      c.auth.getSession().then(({data})=>{const session=data.session;if(session){setToken(session.access_token);setUserEmail(session.user.email||"");}});
+      const {data:listener}=c.auth.onAuthStateChange((_event,session)=>{setToken(session?.access_token||"");setUserEmail(session?.user.email||"");});
+      return ()=>listener.subscription.unsubscribe();
+    }
+  },[]);
+  async function api(path:string,init:RequestInit={}) {
+    const response=await fetch(path,{...init,headers:{...(init.headers||{}),Authorization:"Bearer "+token}});
+    if(!response.ok){const body=await response.json().catch(()=>({}));throw new Error(body.error||"Request failed.");}
+    return response;
+  }
+  useEffect(()=>{if(!token)return;api("/api/admin/summary").then(r=>r.json()).then(setSummary).catch(e=>setMessage(e.message));},[token]);
+  async function signIn(e:React.FormEvent){e.preventDefault();setBusy(true);setMessage("");try{if(!client)throw new Error("Supabase public settings are not configured.");const {error}=await client.auth.signInWithPassword({email,password});if(error)throw error;setPassword("");}catch(e){setMessage(e instanceof Error?e.message:"Sign-in failed.");}finally{setBusy(false);}}
+  async function signOut(){await client?.auth.signOut();setToken("");setSummary(null);setMessage("Signed out.");}
+  async function exportExcel(){setBusy(true);setMessage("");try{const response=await api("/api/admin/export");const blob=await response.blob();const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mosaic-montage-2026-registrations.xlsx";a.click();URL.revokeObjectURL(url);setMessage("Excel workbook generated from current database records.");}catch(e){setMessage(e instanceof Error?e.message:"Export failed.");}finally{setBusy(false);}}
+  async function downloadTemplate(){setBusy(true);try{const response=await api("/api/admin/import");const blob=await response.blob();const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mosaic-import-template.xlsx";a.click();URL.revokeObjectURL(url);}catch(e){setMessage(e instanceof Error?e.message:"Template download failed.");}finally{setBusy(false);}}
+  async function importExcel(){if(!file)return;setBusy(true);setMessage("");setImportResults([]);try{const fd=new FormData();fd.append("file",file);const response=await api("/api/admin/import",{method:"POST",body:fd});const result=await response.json();setImportResults(result.results||[]);setMessage(`Import complete: ${result.imported} imported, ${result.invalid} invalid, ${result.skipped} skipped, ${result.failed} failed.`);const refreshed=await api("/api/admin/summary").then(r=>r.json());setSummary(refreshed);}catch(e){setMessage(e instanceof Error?e.message:"Import failed.");}finally{setBusy(false);}}
+  const metrics=summary?[["Registrations",summary.registrations],["Unique participant records",summary.participants],["Participating colleges",summary.colleges],["Event teams",summary.teams],["Pending payments",summary.pendingPayments],["Pending verification",summary.pendingVerification],["Accommodation requests",summary.accommodation]]:[];
+  return <main className="container section" style={{maxWidth:1100,minHeight:"70vh"}}>
     <a href="/" style={{color:"var(--teal)",fontWeight:800}}>← Public website</a>
-    <div style={{marginTop:30}} className="eyebrow">Organizer access</div>
-    <h1 style={{fontSize:"clamp(2.5rem,6vw,4rem)",color:"var(--navy)",letterSpacing:"-.06em",margin:"12px 0"}}>Admin dashboard</h1>
-    <div className="notice">The dashboard is not enabled yet. Before using it for real student data, configure Supabase Auth, admin-only authorization, audited status changes, and the database-backed Excel import/export endpoints.</div>
-    <p className="muted">Public administrator sign-up is intentionally not provided. Create the first organizer account in the Supabase dashboard and add its user UUID to <code>public.admin_users</code> only after the database migration has been applied.</p>
-    <a className="btn btn-primary" href="mailto:iiim@icfia.org?subject=MOSAIC-MONTAGE%202026%20Organizer%20Access">Contact organizer team</a>
+    <div style={{marginTop:28}} className="eyebrow">Organizer workspace</div>
+    <h1 style={{fontSize:"clamp(2.5rem,6vw,4rem)",color:"var(--navy)",letterSpacing:"-.06em",margin:"10px 0"}}>Admin dashboard</h1>
+    {message&&<div role="status" className="notice" style={{margin:"18px 0"}}>{message}</div>}
+    {!token?<form onSubmit={signIn} className="day login-form"><h2 style={{marginTop:0,color:"var(--navy)"}}>Organizer sign in</h2><p className="muted">Use an organizer account created by the authorized administrator in Supabase Auth. Public sign-up is disabled.</p><label>Email address<input className="admin-input" type="email" required value={email} onChange={e=>setEmail(e.target.value)}/></label><label>Password<input className="admin-input" type="password" required value={password} onChange={e=>setPassword(e.target.value)}/></label><button className="btn btn-primary" disabled={busy||!client}>{busy?"Signing in…":"Sign in securely"}</button>{!client&&<p className="muted">Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to enable sign-in.</p>}</form>:<>
+      <div className="admin-top"><div><strong>{userEmail}</strong><p className="muted" style={{margin:"4px 0 0"}}>Authenticated account · API verifies organizer permission for every request.</p></div><button className="btn btn-outline" onClick={signOut}>Sign out</button></div>
+      {summary&&<div className="metric-grid">{metrics.map(([label,value])=><div className="metric" key={String(label)}><span>{label}</span><strong>{value}</strong></div>)}</div>}
+      <section className="day admin-panel"><h2>Registration data</h2><p className="muted">Export all saved registrations, participant roster, event summary, college summary and payment records into a formatted workbook.</p><button className="btn btn-primary" onClick={exportExcel} disabled={busy}>Export to Excel (.xlsx)</button></section>
+      <section className="day admin-panel"><h2>Bulk import</h2><p className="muted">Use the template columns: full_name, email, mobile, institution, course, year_semester, city, state, event_ids. Event IDs must match the configured database event IDs and registrations must be open.</p><button className="btn btn-outline" onClick={downloadTemplate} disabled={busy}>Download import template</button><div style={{display:"flex",gap:12,alignItems:"center",flexWrap:"wrap",marginTop:16}}><input type="file" accept=".xlsx,.csv" onChange={(e:ChangeEvent<HTMLInputElement>)=>setFile(e.target.files?.[0]||null)}/><button className="btn btn-primary" disabled={busy||!file} onClick={importExcel}>{busy?"Processing…":"Validate & import"}</button></div><small className="muted" style={{display:"block",marginTop:10}}>Max file size 5 MB. Each row is checked and reported individually; only rows saved successfully are marked imported.</small>
+      {importResults.length>0&&<div className="results"><h3>Row results</h3>{importResults.map(item=><div className="result-row" key={item.row}><strong>Row {item.row} · {item.status}</strong><span>{item.detail}</span></div>)}</div>}</section>
+      <div className="notice">The registration API and Excel import/export are connected to Supabase. Apply both SQL migrations, create an authorized admin user, configure the environment variables, and verify event settings before collecting real registrations.</div>
+    </>}
+    <style jsx>{`.login-form{max-width:520px;display:grid;gap:15px}.login-form label{display:grid;gap:7px;font-weight:650}.admin-input{padding:12px;border:1px solid #d7dce0;border-radius:10px;background:#fff}.admin-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0}.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0}.metric{background:#fff;border:1px solid #e5e2d9;border-radius:16px;padding:18px}.metric span{display:block;color:var(--muted);font-size:.86rem}.metric strong{display:block;color:var(--navy);font-size:2rem;margin-top:8px}.admin-panel{margin:18px 0}.admin-panel h2{margin:0;color:var(--navy)}.results{margin-top:20px}.result-row{display:grid;grid-template-columns:170px 1fr;gap:12px;padding:10px 0;border-top:1px solid #e5e2d9;font-size:.88rem}.result-row strong{text-transform:capitalize;color:var(--navy)}.result-row span{overflow-wrap:anywhere;color:var(--muted)}@media(max-width:560px){.admin-top{align-items:flex-start;flex-direction:column}.result-row{grid-template-columns:1fr}}`}</style>
   </main>;
 }
