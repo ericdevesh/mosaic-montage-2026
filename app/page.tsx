@@ -45,18 +45,24 @@ export default function Home() {
             <h1>Ideas don't<br/>just happen.<br/><span className="gradient-text">They collide.</span></h1>
             <p className="hero-copy">Welcome to <strong>Mosaic-Montage 2026</strong> — where technology, business and creativity collide. Two days. Nine challenges. One unforgettable campus energy.</p>
             <div className="hero-actions"><a className="btn btn-primary" href="/register">Enter the experience <span>↗</span></a><a className="btn btn-ghost" href="#events"><span className="play-icon">↓</span> Explore the events</a></div>
-            <div className="hero-meta"><span><b>20—21</b><small>NOVEMBER 2026</small></span><span className="meta-line"/><span><b>09</b><small>LIVE EVENTS</small></span><span className="meta-line"/><span><b>IIIM</b><small>JAIPUR, INDIA</small></span></div>
+            <div className="hero-meta"><span><b>20—21</b><small>NOVEMBER 2026</small></span><span className="meta-line"/><span><b>09</b><small>COMPETITIONS</small></span><span className="meta-line"/><span><b>IIIM</b><small>JAIPUR, INDIA</small></span></div>
           </div>
-          <div className="visual-stage" aria-label="Abstract three-dimensional Mosaic Montage event artwork">
-            <div className="stage-grid"/>
-            <div className="ring ring-a"/><div className="ring ring-b"/><div className="ring ring-c"/>
-            <div className="glass-orb"><div className="orb-shine"/><span>MM</span><small>2026</small></div>
-            <div className="float-card card-top"><span className="card-spark">✳</span><div><small>CREATIVITY LEVEL</small><b>UNLOCKED</b></div></div>
-            <div className="float-card card-bottom"><span className="signal-bars"><i/><i/><i/><i/></span><div><small>YOUR NEXT CHAPTER</small><b>STARTS HERE ↗</b></div></div>
-            <div className="orbit-label label-blue">THINK DIFFERENT<span>✳</span></div><div className="orbit-label label-pink">MAKE NOISE<span>↗</span></div>
+          <div className="visual-stage campus-hero-art" aria-label="IIIM Jaipur campus, venue of Mosaic Montage 2026">
+            <div className="campus-hero-photo"><img src="https://iisjaipur.org/iiim/img/bg/an-img-02.png" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div>
+            <div className="campus-photo-shade"/>
+            <div className="campus-hero-label"><span className="campus-label-mark">M</span><span><b>HOST CAMPUS</b><small>IIIM · JAIPUR, INDIA</small></span></div>
+            <div className="campus-hero-tag">IDEAS MEET HERE <span>✳</span></div>
           </div>
           <div className="scroll-cue"><span/> SCROLL TO EXPLORE</div>
         </div>
+      </section>
+
+      <section className="fest-stats container" aria-label="Fest highlights">
+        <div><span className="stat-icon rose-stat">✦</span><span><b>09</b><small>Competitions</small></span></div>
+        <i/>
+        <div><span className="stat-icon blue-stat">♧</span><span><b>2 Days</b><small>Ideas & experiences</small></span></div>
+        <i/>
+        <div><span className="stat-icon rose-stat">⌂</span><span><b>IIIM</b><small>Jaipur campus</small></span></div>
       </section>
 
       <section id="campus" className="campus-banner"><div className="campus-photo"><img src="https://iisjaipur.org/iiim/img/bg/an-img-02.png" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div><div className="campus-overlay"><span className="section-kicker">THE PLACE WHERE IDEAS MEET</span><h2>Welcome to <span className="gradient-text">IIIM Jaipur.</span></h2><p>One campus. Nine events. A whole lot of creative energy.</p></div></section>
