@@ -85,6 +85,27 @@ export default function AdminPage(){
 .result-row span{color:#d0d8e5!important}
 .toggle-label{color:#f8fafc!important}
 input[type=file]{color:#f3f6fc!important}
-}}`}</style>
+}}`}
+/* Highest-priority admin contrast overrides */
+.metric-grid .metric{background:#111c2c!important;background-image:none!important;border:1px solid #35465e!important;color:#f8fafc!important}
+.metric-grid .metric span{color:#c3cede!important}
+.metric-grid .metric strong{color:#ffffff!important}
+.admin-panel.day{background:#0d1522!important;background-image:none!important;border:1px solid #34445b!important;color:#f3f6fc!important}
+.admin-panel h2,.login-form h2,h1{color:#f8fafc!important}
+.admin-panel p,.admin-panel .muted,.login-form .muted{color:#c3cede!important}
+.admin-panel strong,.event-admin-row strong,.registration-title strong{color:#f8fafc!important}
+.event-admin-row small,.registration-title small,.status-controls label,.event-admin-row label:last-child{color:#c3cede!important}
+.registration-item{background:#111c2c!important;border-color:#35465e!important}
+.event-admin-row{border-top-color:#35465e!important}
+.admin-panel .admin-input,.admin-panel .capacity-input,.login-form .admin-input{background:#ffffff!important;color:#172033!important;border:1px solid #aebbd0!important}
+.admin-panel .admin-input::placeholder,.admin-panel .capacity-input::placeholder{color:#596579!important;opacity:1}
+.admin-panel .admin-input:focus,.admin-panel .capacity-input:focus{outline:3px solid #60a5fa!important;outline-offset:2px}
+.admin-panel .notice,.notice{background:#20172a!important;color:#f5eaf2!important;border-left:3px solid #f06aa9!important}
+.result-row{border-top-color:#35465e!important}
+.result-row strong{color:#ffffff!important}
+.result-row span{color:#d0d8e5!important}
+.toggle-label{color:#f8fafc!important}
+input[type=file]{color:#f3f6fc!important}
+</style>
   </main>;
 }
