@@ -99,15 +99,15 @@ export default function RegisterPage() {
       </form>
     </div>
     <style jsx>{`
-      .form-layout{display:grid;gap:18px}.form-layout h2{font-size:1.2rem;color:var(--navy);margin:12px 0 0}.optional{font-size:.75rem;color:var(--muted);font-weight:500}
-      .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.fields label{font-size:.9rem;font-weight:650;color:var(--ink)}
-      .form-control{display:block;width:100%;margin-top:7px;border:1px solid #d7dce0;border-radius:10px;background:white;padding:12px;color:#243447;min-height:45px}
-      .form-control:focus{outline:2px solid #0f9e9a;outline-offset:2px}
-      .event-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.event-option{display:flex;gap:11px;align-items:center;border:1px solid #e5e2d9;border-radius:13px;padding:14px;background:#fff;cursor:pointer}.event-option input,.check-line input{accent-color:#0f9e9a;width:17px;height:17px;flex-shrink:0}.event-option strong,.event-option small{display:block}.event-option strong{font-size:.9rem;color:var(--navy)}.event-option small{font-size:.78rem;color:var(--muted);margin-top:4px}
-      .member-panel{border:1px solid #d9e9e5;background:#f4fbf9;border-radius:16px;padding:18px}.member-panel h3{margin:0;color:var(--navy)}.member-fields{padding-top:12px;border-top:1px solid #dcebe7;margin-top:12px}
-      .check-line{display:flex;align-items:flex-start;gap:10px;line-height:1.55;font-size:.92rem}.check-line input{margin-top:3px}
-      .fee-summary{display:grid;grid-template-columns:1fr auto;gap:9px;padding:17px;border-radius:14px;background:#f2efe6}.fee-summary strong{color:var(--navy)}.fee-summary small{grid-column:1/-1;color:var(--muted);line-height:1.5}
-      .submit-button{width:100%;border:0}.success-note{border-left:4px solid #0f9e9a;background:#e1f5f1;padding:16px 18px;border-radius:0 14px 14px 0;color:#164c49}
+      .form-layout{display:grid;gap:18px}.form-layout h2{font-size:1.2rem;color:#f4f7ff;margin:12px 0 0}.optional{font-size:.75rem;color:#a9b7ca;font-weight:500}
+      .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.fields label{font-size:.9rem;font-weight:650;color:#e7edf7}
+      .form-control{display:block;width:100%;margin-top:7px;border:1px solid #34465c;border-radius:10px;background:#f8fafc;padding:12px;color:#172334;min-height:45px}
+      .form-control:focus{outline:2px solid #159dff;outline-offset:2px}
+      .event-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.event-option{display:flex;gap:11px;align-items:center;border:1px solid #34465c;border-radius:13px;padding:14px;background:#111b2a;color:#f4f7ff;cursor:pointer;transition:border-color .2s,background .2s}.event-option input,.check-line input{accent-color:#159dff;width:17px;height:17px;flex-shrink:0}.event-option:hover{border-color:#159dff;background:#142338}.event-option strong,.event-option small{display:block}.event-option strong{font-size:.9rem;color:#f4f7ff}.event-option small{font-size:.78rem;color:#aabbd0;margin-top:4px}
+      .member-panel{border:1px solid #2d4967;background:#0b1421;border-radius:16px;padding:18px}.member-panel h3{margin:0;color:#f4f7ff}.member-fields{padding-top:12px;border-top:1px solid #25374c;margin-top:12px}
+      .check-line{display:flex;align-items:flex-start;gap:10px;line-height:1.55;font-size:.92rem;color:#e5ebf5}.check-line input{margin-top:3px}
+      .fee-summary{display:grid;grid-template-columns:1fr auto;gap:9px;padding:17px;border-radius:14px;background:#101c2b;border:1px solid #2d4967;color:#eaf2ff}.fee-summary strong{color:#ff67c2}.fee-summary small{grid-column:1/-1;color:#aabbd0;line-height:1.5}
+      .submit-button{width:100%;border:0}.success-note{border-left:4px solid #24b8ff;background:#0e2332;padding:16px 18px;border-radius:0 14px 14px 0;color:#e7f7ff}
       @media(max-width:600px){.fields,.event-options{grid-template-columns:1fr}.form-layout{padding:18px}.member-panel{padding:12px}}
     `}</style>
   </main>;
