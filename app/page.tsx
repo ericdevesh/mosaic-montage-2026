@@ -31,7 +31,7 @@ export default function Home() {
           <span><strong style={{display:"block",color:"var(--navy)",letterSpacing:".04em"}}>MOSAIC-MONTAGE</strong><small style={{color:"var(--muted)"}}>IIIM Jaipur · 2026</small></span>
         </a>
         <nav aria-label="Main navigation" style={{display:"flex",alignItems:"center",gap:18,flexWrap:"wrap",justifyContent:"end",fontSize:".9rem",fontWeight:700}}>
-          <a href="#about">About</a><a href="#events">Events</a><a href="#schedule">Schedule</a><a href="#rules">Rules</a><a className="btn btn-primary" href="#register">Register</a>
+          <a href="#about">About</a><a href="#events">Events</a><a href="#schedule">Schedule</a><a href="#rules">Rules</a><a className="btn btn-primary" href="/register">Register</a>
         </nav>
       </div>
     </header>
@@ -97,10 +97,10 @@ export default function Home() {
       </section>
 
       <section id="register" className="section container">
-        <div className="cta"><div><div className="eyebrow">Ready to take part?</div><h2 style={{marginBottom:8}}>Bring your bold idea.</h2><p className="muted" style={{margin:0,maxWidth:540}}>Student registration and organizer data management are being prepared. Contact IIIM for official registration instructions until the registration portal is configured.</p></div><a className="btn btn-primary" href="mailto:iiim@icfia.org?subject=MOSAIC-MONTAGE%202026%20Registration%20Enquiry">Enquire to register ↗</a></div>
+        <div className="cta"><div><div className="eyebrow">Ready to take part?</div><h2 style={{marginBottom:8}}>Bring your bold idea.</h2><p className="muted" style={{margin:0,maxWidth:540}}>Complete the student registration form, choose eligible events and provide the required participant details. Event registrations open only when the organizing team enables them.</p></div><a className="btn btn-primary" href="/register">Start registration ↗</a></div>
       </section>
     </main>
 
-    <footer id="contact"><div className="container footer-grid"><div><div style={{display:"flex",alignItems:"center",gap:12,marginBottom:14}}><span className="brand-mark" style={{background:"var(--teal)"}}>MM</span><strong>MOSAIC-MONTAGE 2026</strong></div><p style={{color:"#b7c4d0",lineHeight:1.7,maxWidth:390}}>27th Annual Management & IT Fest<br/>“A meeting ground for bold ideas”</p></div><div><strong>Contact</strong><p style={{color:"#b7c4d0",lineHeight:2}}>IIIM, Sector-12, Mahaveer Marg<br/>Mansarovar, Jaipur – 302020<br/><a href="mailto:iiim@icfia.org">iiim@icfia.org</a></p></div><div><strong>Help desk</strong><p style={{color:"#b7c4d0",lineHeight:2}}><a href="tel:01412781154">0141-2781154</a><br/><a href="tel:01412781155">0141-2781155</a><br/><a href="tel:9358210063">93582-10063</a><br/><a href="https://www.icfia.org" target="_blank" rel="noreferrer">Official website ↗</a></p></div></div><div className="container" style={{borderTop:"1px solid #304154",marginTop:28,paddingTop:20,color:"#9baaba",fontSize:".83rem"}}>© 2026 International School of Informatics & Management, Jaipur. Event details subject to official confirmation.</div></footer>
+    <footer id="contact"><div className="container footer-grid"><div><div style={{display:"flex",alignItems:"center",gap:12,marginBottom:14}}><span className="brand-mark" style={{background:"var(--teal)"}}>MM</span><strong>MOSAIC-MONTAGE 2026</strong></div><p style={{color:"#b7c4d0",lineHeight:1.7,maxWidth:390}}>27th Annual Management & IT Fest<br/>“A meeting ground for bold ideas”</p></div><div><strong>Contact</strong><p style={{color:"#b7c4d0",lineHeight:2}}>IIIM, Sector-12, Mahaveer Marg<br/>Mansarovar, Jaipur – 302020<br/><a href="mailto:iiim@icfia.org">iiim@icfia.org</a></p></div><div><strong>Help desk</strong><p style={{color:"#b7c4d0",lineHeight:2}}><a href="tel:01412781154">0141-2781154</a><br/><a href="tel:01412781155">0141-2781155</a><br/><a href="tel:9358210063">93582-10063</a><br/><a href="https://www.icfia.org" target="_blank" rel="noreferrer">Official website ↗</a><br/><a href="/admin">Organizer login</a></p></div></div><div className="container" style={{borderTop:"1px solid #304154",marginTop:28,paddingTop:20,color:"#9baaba",fontSize:".83rem"}}>© 2026 International School of Informatics & Management, Jaipur. Event details subject to official confirmation.</div></footer>
   </>;
 }
