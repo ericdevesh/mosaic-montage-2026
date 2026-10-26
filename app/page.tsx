@@ -25,82 +25,93 @@ const dayOne = [
 export default function Home() {
   return <>
     <header className="nav">
-      <div className="container" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:18,minHeight:76}}>
-        <a href="#home" style={{display:"flex",alignItems:"center",gap:11}}>
-          <span className="brand-mark">MM</span>
-          <span><strong style={{display:"block",color:"var(--navy)",letterSpacing:".04em"}}>MOSAIC-MONTAGE</strong><small style={{color:"var(--muted)"}}>IIIM Jaipur · 2026</small></span>
+      <div className="container nav-inner">
+        <a href="#home" className="brand">
+          <span className="brand-mark">M<span>²</span></span>
+          <span><strong>MOSAIC<span className="brand-dash">—</span>MONTAGE</strong><small>IIIM JAIPUR <i/> 2026</small></span>
         </a>
-        <nav aria-label="Main navigation" style={{display:"flex",alignItems:"center",gap:18,flexWrap:"wrap",justifyContent:"end",fontSize:".9rem",fontWeight:700}}>
-          <a href="#about">About</a><a href="#events">Events</a><a href="#schedule">Schedule</a><a href="#rules">Rules</a><a className="btn btn-primary" href="/register">Register</a>
+        <nav aria-label="Main navigation">
+          <a href="#about">About</a><a href="#events">Events</a><a href="#schedule">Schedule</a><a href="#rules">Info</a>
+          <a className="btn btn-primary nav-cta" href="/register">Register <span>↗</span></a>
         </nav>
       </div>
     </header>
 
     <main id="home">
       <section className="hero">
-        <div className="container hero-grid">
-          <div>
-            <div className="eyebrow" style={{color:"#67d9d0"}}>27th Annual Management & IT Fest</div>
-            <h1>MOSAIC-<span>MONTAGE</span><br/>2026</h1>
-            <p className="hero-copy">A meeting ground for bold ideas. Two days of management, technology, creativity and fresh perspectives — hosted by IIIM Jaipur.</p>
-            <div style={{display:"flex",gap:12,flexWrap:"wrap",marginTop:26}}>
-              <a className="btn btn-primary" href="#register">Register interest <span aria-hidden="true">↗</span></a>
-              <a className="btn btn-outline" style={{color:"white",borderColor:"#637386"}} href="#events">Explore events</a>
-            </div>
-            <div className="stats">
-              <div className="stat"><strong>20–21 Nov</strong><span style={{color:"var(--muted)",fontSize:".88rem"}}>2026 · Two days</span></div>
-              <div className="stat"><strong>₹150</strong><span style={{color:"var(--muted)",fontSize:".88rem"}}>Per participant</span></div>
-              <div className="stat"><strong>Jaipur</strong><span style={{color:"var(--muted)",fontSize:".88rem"}}>IIIM · Mansarovar</span></div>
-            </div>
+        <div className="hero-grid container">
+          <div className="hero-copy-block">
+            <div className="eyebrow"><span className="live-dot"/> THE 27TH ANNUAL MANAGEMENT & IT FEST</div>
+            <h1>Ideas don't<br/>just happen.<br/><span className="gradient-text">They collide.</span></h1>
+            <p className="hero-copy">Welcome to <strong>Mosaic-Montage 2026</strong> — where technology, business and creativity collide. Two days. Nine challenges. One unforgettable campus energy.</p>
+            <div className="hero-actions"><a className="btn btn-primary" href="/register">Enter the experience <span>↗</span></a><a className="btn btn-ghost" href="#events"><span className="play-icon">↓</span> Explore the events</a></div>
+            <div className="hero-meta"><span><b>20—21</b><small>NOVEMBER 2026</small></span><span className="meta-line"/><span><b>09</b><small>LIVE EVENTS</small></span><span className="meta-line"/><span><b>IIIM</b><small>JAIPUR, INDIA</small></span></div>
           </div>
-          <div className="hero-art" aria-hidden="true"><div className="orbit"></div><div className="orbit two"></div><div className="art-core">M<span style={{color:"white"}}>²</span></div><div className="floating one">IDEAS IN MOTION</div><div className="floating two">THINK · MAKE · LEAD</div></div>
+          <div className="visual-stage" aria-label="Abstract three-dimensional Mosaic Montage event artwork">
+            <div className="stage-grid"/>
+            <div className="ring ring-a"/><div className="ring ring-b"/><div className="ring ring-c"/>
+            <div className="glass-orb"><div className="orb-shine"/><span>MM</span><small>2026</small></div>
+            <div className="float-card card-top"><span className="card-spark">✳</span><div><small>CREATIVITY LEVEL</small><b>UNLOCKED</b></div></div>
+            <div className="float-card card-bottom"><span className="signal-bars"><i/><i/><i/><i/></span><div><small>YOUR NEXT CHAPTER</small><b>STARTS HERE ↗</b></div></div>
+            <div className="orbit-label label-blue">THINK DIFFERENT<span>✳</span></div><div className="orbit-label label-pink">MAKE NOISE<span>↗</span></div>
+          </div>
+          <div className="scroll-cue"><span/> SCROLL TO EXPLORE</div>
         </div>
       </section>
 
-      <section id="about" className="section container">
-        <div className="section-head"><div><div className="eyebrow">The festival</div><h2>Where ideas meet action.</h2></div><p className="muted" style={{maxWidth:470,margin:0}}>A campus gathering for curious minds to explore business, technology, design and performance through friendly competition.</p></div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:18}}>
-          <div className="rule"><b>01 / Think boldly</b>Pitch a fresh perspective, solve a problem, or make a concept memorable.</div>
-          <div className="rule"><b>02 / Build together</b>Bring your team, your skills and your college spirit to the challenge.</div>
-          <div className="rule"><b>03 / Meet your people</b>Connect with students and future leaders across institutions.</div>
+      <section id="about" className="section container about-section">
+        <div className="section-kicker">01 / THE BIG PICTURE</div>
+        <div className="section-head"><h2>Not just a fest.<br/><span className="gradient-text">A creative collision.</span></h2><p className="muted">A meeting ground for curious minds to challenge convention, experiment with ideas and meet the people who make things happen.</p></div>
+        <div className="feature-grid">
+          <article className="feature-card"><span className="feature-number">01</span><div className="feature-icon blue-icon">✳</div><h3>Think boldly.</h3><p>Question the obvious. Pitch a fresh perspective. Make a concept impossible to ignore.</p><span className="feature-line"/></article>
+          <article className="feature-card"><span className="feature-number">02</span><div className="feature-icon pink-icon">↗</div><h3>Build together.</h3><p>Bring your team, your skills and your college spirit. The best ideas grow in good company.</p><span className="feature-line"/></article>
+          <article className="feature-card"><span className="feature-number">03</span><div className="feature-icon blue-icon">⌘</div><h3>Meet your people.</h3><p>Connect with students across institutions and leave with new perspectives and possibilities.</p><span className="feature-line"/></article>
         </div>
       </section>
 
-      <section id="events" className="section" style={{background:"#f2efe6"}}>
+      <section id="events" className="section events-section">
         <div className="container">
-          <div className="section-head"><div><div className="eyebrow">Choose your challenge</div><h2>Find your event.</h2></div><p className="muted" style={{maxWidth:400,margin:0}}>Explore the competitions and check each event’s format before registering.</p></div>
-          <div className="event-grid">{events.map(e=><article className="event-card" key={e.n}><div className="event-no">{e.n}</div><h3>{e.name}</h3><b style={{fontSize:".9rem",color:"var(--teal)",marginBottom:8}}>{e.tagline}</b><p>{e.desc}</p><div className="event-meta">{e.format}</div></article>)}</div>
+          <div className="section-kicker">02 / PICK YOUR PLAYGROUND</div>
+          <div className="section-head"><h2>Nine ways to<br/><span className="gradient-text">make your mark.</span></h2><p className="muted">Find your lane — from code and commerce to performance and pure imagination.</p></div>
+          <div className="event-grid">{events.map(e=><article className="event-card" key={e.n}><div className="event-card-top"><span className="event-no">{e.n}</span><span className="event-arrow">↗</span></div><h3>{e.name}</h3><b className="event-tagline">{e.tagline}</b><p>{e.desc}</p><div className="event-meta"><span className="meta-dot"/>{e.format}</div></article>)}</div>
+          <div className="events-bottom"><span>YOUR IDEA DESERVES A STAGE.</span><a href="/register">Find your event <b>↗</b></a></div>
         </div>
       </section>
 
-      <section id="schedule" className="section container">
-        <div className="section-head"><div><div className="eyebrow">Mark your calendar</div><h2>Two days. Many possibilities.</h2></div><p className="muted" style={{maxWidth:400,margin:0}}>Schedule entries marked with an asterisk need organizer confirmation. Times are shown as published in the brochure.</p></div>
+      <section id="schedule" className="section container schedule-section">
+        <div className="section-kicker">03 / SAVE THE DATES</div>
+        <div className="section-head"><h2>Two days.<br/><span className="gradient-text">Infinite energy.</span></h2><p className="muted">The festival unfolds across two days at IIIM Jaipur. Please confirm starred times with the organizing team before travel.</p></div>
         <div className="schedule">
-          <div className="day"><h3>Day 01 <span style={{color:"var(--teal)"}}>· 20 November</span></h3>{dayOne.map((item,i)=><div className="schedule-row" key={item[0]}><div><strong>{item[0]}</strong><span className="muted" style={{fontSize:".87rem"}}>{item[2]}</span></div><span className="pill">{item[1]}</span>{i<7 && <span className="muted" style={{gridColumn:"1 / -1",fontSize:".75rem"}}> * Time to be confirmed</span>}</div>)}</div>
-          <div className="day"><h3>Day 02 <span style={{color:"var(--teal)"}}>· 21 November</span></h3><div className="schedule-row"><div><strong>LEAD TALKS</strong><span className="muted" style={{fontSize:".87rem"}}>IIIM Auditorium</span></div><span className="pill">11:00 AM – 2:00 PM</span></div><p className="muted">LEAD TALKS is IIIM’s alumni leadership series, sharing alumni achievements, professional insights, experiences, challenges and leadership journeys.</p><div className="notice" style={{marginTop:22}}>The brochure contains potentially inconsistent AM/PM entries. Starred times are not confirmed; please check official updates before making travel plans.</div></div>
+          <div className="day"><div className="day-heading"><span className="day-index">DAY 01</span><h3>Friday <span>20 November</span></h3></div>{dayOne.map((item,i)=><div className="schedule-row" key={item[0]}><div className="schedule-marker">{String(i+1).padStart(2,"0")}</div><div className="schedule-info"><strong>{item[0]}</strong><span>{item[2]}</span></div><span className="pill">{item[1]}</span></div>)}</div>
+          <div className="day day-two"><div className="day-heading"><span className="day-index pink">DAY 02</span><h3>Saturday <span>21 November</span></h3></div><div className="schedule-row"><div className="schedule-marker">01</div><div className="schedule-info"><strong>LEAD TALKS</strong><span>IIIM Auditorium</span></div><span className="pill">11:00 AM – 2:00 PM</span></div><div className="day-two-art"><div className="talk-orbit">LEAD<br/>TALKS<span>2026</span></div><p>Real journeys.<br/>Honest lessons.<br/><b>Ideas worth sharing.</b></p></div><div className="notice">Some Day 01 AM/PM entries in the published schedule appear inconsistent. Starred times need organizer confirmation.</div></div>
         </div>
       </section>
 
-      <section id="rules" className="section" style={{background:"#f2efe6"}}>
+      <section id="rules" className="section info-section">
         <div className="container">
-          <div className="section-head"><div><div className="eyebrow">Before you register</div><h2>Good to know.</h2></div></div>
+          <div className="section-kicker">04 / THE IMPORTANT BITS</div>
+          <div className="section-head"><h2>Good to know.<br/><span className="gradient-text">Better to be ready.</span></h2></div>
           <div className="rule-grid">
-            <div className="rule"><b>Registration fee</b>₹150 per participant. This is not an individual event fee.</div>
-            <div className="rule"><b>Institute limit</b>Maximum 15 participating students per institute.</div>
-            <div className="rule"><b>Outstation participants</b>Free meals and lodging are stated for outstation participants with intimation 15 days in advance. Availability is not guaranteed here.</div>
-            <div className="rule"><b>Participant list</b>Submit on institution letterhead, signed by an authorized signatory, or through the institution’s official email ID.</div>
-            <div className="rule"><b>College ID</b>Students must carry their college ID proof on the event day.</div>
-            <div className="rule"><b>Judges & schedule</b>Judges’ decisions are final. Schedule changes or event cancellation may occur as described in the official rules.</div>
+            <div className="rule"><span>01</span><div><b>Registration fee</b><p>₹150 per participant. This is not an individual event fee.</p></div></div>
+            <div className="rule"><span>02</span><div><b>Institute limit</b><p>Maximum 15 participating students per institute.</p></div></div>
+            <div className="rule"><span>03</span><div><b>Outstation participants</b><p>Free meals and lodging are stated with intimation 15 days in advance. Availability is not guaranteed here.</p></div></div>
+            <div className="rule"><span>04</span><div><b>Participant list</b><p>Submit on institution letterhead with authorized signature, or through the institution’s official email ID.</p></div></div>
+            <div className="rule"><span>05</span><div><b>College ID</b><p>Carry your college ID proof on the event day.</p></div></div>
+            <div className="rule"><span>06</span><div><b>Judges & schedule</b><p>Judges’ decisions are final. Schedule changes or event cancellation may occur under official rules.</p></div></div>
           </div>
-          <p className="muted" style={{marginTop:18}}>Overall Winner’s Trophy scoring criteria: <a href="https://www.icfia.org" target="_blank" rel="noreferrer" style={{color:"var(--teal)",fontWeight:800}}>icfia.org ↗</a></p>
+          <p className="rules-foot">Overall Winner’s Trophy scoring criteria: <a href="https://www.icfia.org" target="_blank" rel="noreferrer">icfia.org ↗</a></p>
         </div>
       </section>
 
-      <section id="register" className="section container">
-        <div className="cta"><div><div className="eyebrow">Ready to take part?</div><h2 style={{marginBottom:8}}>Bring your bold idea.</h2><p className="muted" style={{margin:0,maxWidth:540}}>Complete the student registration form, choose eligible events and provide the required participant details. Event registrations open only when the organizing team enables them.</p></div><a className="btn btn-primary" href="/register">Start registration ↗</a></div>
+      <section id="register" className="section container register-section">
+        <div className="cta">
+          <div className="cta-orb">MM<span>²</span></div>
+          <div className="cta-copy"><div className="eyebrow"><span className="live-dot"/> YOUR MOMENT IS WAITING</div><h2>Make some<br/><span className="gradient-text">good noise.</span></h2><p>Bring your curiosity, your crew and your best idea. Your Mosaic-Montage story starts here.</p><a className="btn btn-primary" href="/register">Register for 2026 <span>↗</span></a></div>
+          <div className="cta-stamp">THINK<br/>MAKE<br/>LEAD<span>✳</span></div>
+        </div>
       </section>
     </main>
 
-    <footer id="contact"><div className="container footer-grid"><div><div style={{display:"flex",alignItems:"center",gap:12,marginBottom:14}}><span className="brand-mark" style={{background:"var(--teal)"}}>MM</span><strong>MOSAIC-MONTAGE 2026</strong></div><p style={{color:"#b7c4d0",lineHeight:1.7,maxWidth:390}}>27th Annual Management & IT Fest<br/>“A meeting ground for bold ideas”</p></div><div><strong>Contact</strong><p style={{color:"#b7c4d0",lineHeight:2}}>IIIM, Sector-12, Mahaveer Marg<br/>Mansarovar, Jaipur – 302020<br/><a href="mailto:iiim@icfia.org">iiim@icfia.org</a></p></div><div><strong>Help desk</strong><p style={{color:"#b7c4d0",lineHeight:2}}><a href="tel:01412781154">0141-2781154</a><br/><a href="tel:01412781155">0141-2781155</a><br/><a href="tel:9358210063">93582-10063</a><br/><a href="https://www.icfia.org" target="_blank" rel="noreferrer">Official website ↗</a><br/><a href="/admin">Organizer login</a></p></div></div><div className="container" style={{borderTop:"1px solid #304154",marginTop:28,paddingTop:20,color:"#9baaba",fontSize:".83rem"}}>© 2026 International School of Informatics & Management, Jaipur. Event details subject to official confirmation.</div></footer>
+    <footer id="contact"><div className="container footer-grid"><div className="footer-brand"><a href="#home" className="brand"><span className="brand-mark">M<span>²</span></span><span><strong>MOSAIC—MONTAGE</strong><small>IIIM JAIPUR · 2026</small></span></a><p>27th Annual Management & IT Fest.<br/>A meeting ground for bold ideas.</p></div><div><strong className="footer-title">FIND US</strong><p>IIIM, Sector-12, Mahaveer Marg<br/>Mansarovar, Jaipur – 302020<br/><a href="mailto:iiim@icfia.org">iiim@icfia.org</a></p></div><div><strong className="footer-title">NEED A HAND?</strong><p><a href="tel:01412781154">0141-2781154</a><br/><a href="tel:01412781155">0141-2781155</a><br/><a href="tel:9358210063">93582-10063</a><br/><a href="https://www.icfia.org" target="_blank" rel="noreferrer">Official website ↗</a><br/><a href="/admin">Organizer login ↗</a></p></div></div><div className="container footer-bottom"><span>© 2026 INTERNATIONAL SCHOOL OF INFORMATICS & MANAGEMENT, JAIPUR</span><a href="#home">BACK TO TOP ↑</a></div></footer>
   </>;
 }
