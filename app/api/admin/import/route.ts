@@ -32,7 +32,7 @@ export async function POST(request:Request){
   const ext=file.name.toLowerCase().split(".").pop();
   if(!["xlsx","csv"].includes(ext||""))return NextResponse.json({error:"Only .xlsx and .csv files are supported."},{status:400});
   const bytes=Buffer.from(await file.arrayBuffer()),wb=new ExcelJS.Workbook();
-  try{if(ext==="csv")await wb.csv.read(Readable.from(bytes.toString("utf8")));else await wb.xlsx.load(bytes);}
+  try{if(ext==="csv")await wb.csv.read(Readable.from([bytes.toString("utf8")]));else await wb.xlsx.load(bytes);}
   catch{return NextResponse.json({error:"The spreadsheet could not be read."},{status:400});}
   const sheet=wb.worksheets[0];
   if(!sheet||sheet.rowCount<2)return NextResponse.json({error:"The spreadsheet has no data rows."},{status:400});
