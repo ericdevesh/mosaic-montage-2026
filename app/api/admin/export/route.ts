@@ -14,7 +14,8 @@ export async function GET(request:Request){
     db.from("teams").select("*"),
     db.from("events").select("*"),
     db.from("payment_records").select("*"),
-    db.from("accommodation_requests").select("*")
+    db.from("accommodation_requests").select("*"),
+    db.from("registration_team_members").select("*")
   ]);
   if([r,p,i,t,e,pay,a,tm].some(x=>x.error)) return NextResponse.json({error:"Export query failed. Check database setup."},{status:500});
   const registrations=r.data||[],participants=p.data||[],institutions=i.data||[],teams=t.data||[],events=e.data||[],payments=pay.data||[],accommodation=a.data||[],memberships=tm.data||[];
