@@ -51,9 +51,11 @@ export async function GET(request:Request){
     const ids=new Set(ir.map(reg=>reg.primary_participant_id));
     return [inst.name,participants.filter(person=>person.institution_id===inst.id).length,ir.length,[...new Set(ir.flatMap(reg=>teams.filter(team=>team.registration_id===reg.id).map(team=>byId(events,team.event_id)?.name||team.event_id)))].join(", "),ir.reduce((sum,reg)=>sum+Number(reg.amount_due||0),0),ir.filter(reg=>reg.payment==="paid").reduce((sum,reg)=>sum+Number(reg.amount_paid||0),0),accommodation.filter(req=>ir.some(reg=>reg.id===req.registration_id)&&req.requested).length];
   }));
-  addSheet("Payments",["Registration reference","Institution","Participant/team reference","Amount due","Amount paid","Payment status","Verification date","Notes"],payments.map(payment=>{
-    const reg=byId(registrations,payment.registration_id),inst=reg?byId(institutions,reg.institution_id):null;
-    return [reg?.reference,inst?.name,payment.registration_id,payment.amount,reg?.amount_paid,payment.status,payment.verified_at,payment.reference_note];
+  addSheet("Payments",["Registration reference","Institution","Participant/team reference","Amount due","Amount paid","Payment status","Verification date","Notes"],registrations.flatMap(reg=>{
+    const inst=byId(institutions,reg.institution_id),person=byId(participants,reg.primary_participant_id);
+    const recorded=payments.filter(payment=>payment.registration_id===reg.id);
+    if(!recorded.length)return [[reg.reference,inst?.name,person?.full_name,reg.amount_due,reg.amount_paid,reg.payment,"",reg.internal_notes||""]];
+    return recorded.map(payment=>[reg.reference,inst?.name,person?.full_name,payment.amount,reg.amount_paid,payment.status,payment.verified_at,payment.reference_note]);
   }));
   const buffer=await wb.xlsx.writeBuffer();
   return new Response(buffer,{status:200,headers:{"Content-Type":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","Content-Disposition":'attachment; filename="mosaic-montage-2026-registrations.xlsx"',"Cache-Control":"no-store"}});
