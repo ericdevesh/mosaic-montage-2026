@@ -43,7 +43,7 @@ export async function POST(request:Request){
   if(missing.length)return NextResponse.json({error:"Missing required columns: "+missing.join(", ")},{status:400});
 
   const db=auth.admin,rows:ImportRow[]=[],seen=new Set<string>();
-  const eventResult=await db.from("events").select("id,name,is_open");
+  const eventResult=await db.from("events").select("id,name,is_open,min_team_size,max_team_size");
   if(eventResult.error)return NextResponse.json({error:"Unable to validate event IDs."},{status:500});
   const events=new Map((eventResult.data||[]).map(e=>[e.id,e]));
   for(let rowNum=2;rowNum<=sheet.rowCount;rowNum++){
@@ -58,7 +58,7 @@ export async function POST(request:Request){
     if(!data.institution||!data.course||!data.year_semester||!data.city||!data.state)errors.push("institution/course/year/city/state required");
     if(!data.events.length)errors.push("event_ids required");
     if(data.events.some(id=>!events.has(id)))errors.push("unknown event ID");
-    if(data.events.some(id=>events.has(id)&&!events.get(id)?.is_open))errors.push("one or more selected events are closed");
+    if(data.events.some(id=>events.has(id)&&!events.get(id)?.is_open))errors.push("one or more selected events are closed");\n    if(data.events.some(id=>events.has(id)&&(events.get(id)!.min_team_size>1||events.get(id)!.max_team_size<1)))errors.push("team events need team-member details; bulk import currently supports individual registrations only");
     if(errors.length){rows.push({row:rowNum,status:"invalid",detail:errors.join("; "),data});continue;}
     if(seen.has(data.email)){rows.push({row:rowNum,status:"duplicate",detail:"Email appears more than once in this file",data});continue;}
     seen.add(data.email);
