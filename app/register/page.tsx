@@ -33,7 +33,9 @@ export default function RegisterPage() {
         course:get("course"),year_semester:get("year_semester"),city:get("city"),state:get("state")
       };
     });
-    const incompatible = selected.filter(id=>{const event=eventOptions.find(option=>option[0]===id);return !event||teamSize<event[3]||teamSize>event[4];});\n    if(incompatible.length){setMessage("The selected events have different team-size requirements. Choose compatible events or change the number of team members.");setBusy(false);return;}\n    const payload = {
+    const incompatible = selected.filter(id=>{const event=eventOptions.find(option=>option[0]===id);return !event||teamSize<event[3]||teamSize>event[4];});
+    if(incompatible.length){setMessage("The selected events have different team-size requirements. Choose compatible events or change the number of team members.");setBusy(false);return;}
+    const payload = {
       full_name:get("full_name"),email:get("email"),mobile:get("mobile"),institution:get("institution"),
       course:get("course"),year_semester:get("year_semester"),city:get("city"),state:get("state"),
       events:selected,team_size:teamSize,members,team_name:get("team_name"),
