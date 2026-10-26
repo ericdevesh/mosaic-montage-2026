@@ -2,12 +2,12 @@
 
 import { FormEvent, useState } from "react";
 
-const eventOptions = [
-  ["idea-volcano","IDEA VOLCANO","Individual · 1 member"],["memeconomics","MEMECONOMICS","Individual · 1 member"],
-  ["bulls-bears","BULLS & BEARS","Team · 2 members"],["code-acumen","CODE ACUMEN","Team · 2 members"],
-  ["web-vision","WEB VISION","Team · 2 members"],["rolling-reels","ROLLING REELS","Individual · 1 member"],
-  ["fusion-fiesta","FUSION FIESTA","Team · 1–2 members"],["d4u","D4U","Team · 1–4 members"],
-  ["strings-unplugged","STRINGS UNPLUGGED","Individual · 1 member"]
+const eventOptions: [string,string,string,number,number][] = [
+  ["idea-volcano","IDEA VOLCANO","Individual · 1 member",1,1],["memeconomics","MEMECONOMICS","Individual · 1 member",1,1],
+  ["bulls-bears","BULLS & BEARS","Team · 2 members",2,2],["code-acumen","CODE ACUMEN","Team · 2 members",2,2],
+  ["web-vision","WEB VISION","Team · 2 members",2,2],["rolling-reels","ROLLING REELS","Individual · 1 member",1,1],
+  ["fusion-fiesta","FUSION FIESTA","Team · 1–2 members",1,2],["d4u","D4U","Team · 1–4 members",1,4],
+  ["strings-unplugged","STRINGS UNPLUGGED","Individual · 1 member",1,1]
 ];
 
 export default function RegisterPage() {
@@ -33,7 +33,7 @@ export default function RegisterPage() {
         course:get("course"),year_semester:get("year_semester"),city:get("city"),state:get("state")
       };
     });
-    const payload = {
+    const incompatible = selected.filter(id=>{const event=eventOptions.find(option=>option[0]===id);return !event||teamSize<event[3]||teamSize>event[4];});\n    if(incompatible.length){setMessage("The selected events have different team-size requirements. Choose compatible events or change the number of team members.");setBusy(false);return;}\n    const payload = {
       full_name:get("full_name"),email:get("email"),mobile:get("mobile"),institution:get("institution"),
       course:get("course"),year_semester:get("year_semester"),city:get("city"),state:get("state"),
       events:selected,team_size:teamSize,members,team_name:get("team_name"),
