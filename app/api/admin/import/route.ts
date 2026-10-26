@@ -37,7 +37,8 @@ export async function POST(request:Request){
   const db=auth.admin,results:{row:number,status:string,detail:string}[]=[];
   for(let rowNum=2;rowNum<=sheet.rowCount;rowNum++){
     const row=sheet.getRow(rowNum);
-    const rowValues=row.values as ExcelJS.CellValue[];\n    if(row.cellCount===0||rowValues.slice(1).every(v=>String(v??"").trim()==="")) continue;
+    const rowValues=row.values as ExcelJS.CellValue[];
+    if(row.cellCount===0||rowValues.slice(1).every(v=>String(v??"").trim()==="")) continue;
     const val=(key:string)=>String(row.getCell(map.get(key)!).text??"").trim();
     const item={full_name:val("full_name"),email:val("email").toLowerCase(),mobile:val("mobile"),institution:val("institution"),course:val("course"),year_semester:val("year_semester"),city:val("city"),state:val("state"),events:val("event_ids").split(/[;,]/).map(x=>x.trim()).filter(Boolean)};
     const errors:string[]=[];
