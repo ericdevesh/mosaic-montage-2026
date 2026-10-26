@@ -85,6 +85,45 @@ export default function AdminPage(){
 .result-row span{color:#d0d8e5!important}
 .toggle-label{color:#f8fafc!important}
 input[type=file]{color:#f3f6fc!important}
+
+/* Admin dashboard responsive layout */
+main{width:min(1120px,calc(100% - 40px))!important;margin-inline:auto!important;padding-top:24px!important}
+h1{font-size:clamp(2.2rem,6vw,4rem)!important;line-height:1.08!important;letter-spacing:-.045em!important;overflow-wrap:anywhere}
+.metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+.metric{min-width:0!important}
+.metric span{line-height:1.4!important}
+.event-admin-row{min-width:0}
+.capacity-input,.admin-input{min-width:0;max-width:100%;box-sizing:border-box}
+.status-controls{min-width:0}
+@media(max-width:760px){
+ main{width:calc(100% - 32px)!important;padding-top:18px!important}
+ .admin-top{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin:16px 0}
+ .admin-top button{align-self:flex-start}
+ .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .metric{padding:14px!important;border-radius:13px!important}
+ .metric span{font-size:.8rem!important}
+ .metric strong{font-size:1.8rem!important}
+ .admin-panel.day{padding:18px!important}
+ .admin-panel h2{font-size:clamp(1.65rem,7vw,2.4rem)!important;line-height:1.12!important}
+ .event-admin-row{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+ .event-admin-row>div{grid-column:auto!important;min-width:0}
+ .event-admin-row label:last-child{width:100%}
+ .capacity-input{width:100%}
+ .status-controls{grid-template-columns:minmax(0,1fr)!important}
+ .registration-item{padding:12px!important}
+ .registration-title{min-width:0;overflow-wrap:anywhere}
+ .registration-title strong{overflow-wrap:anywhere}
+ .result-row{grid-template-columns:minmax(0,1fr)!important;gap:5px!important}
+ .login-form{width:100%;max-width:100%}
+ .login-form .admin-input{width:100%}
+ button,.btn{min-height:42px}
+}
+@media(max-width:380px){
+ main{width:calc(100% - 24px)!important}
+ .metric-grid{grid-template-columns:minmax(0,1fr)!important}
+ .metric{padding:16px!important}
+ h1{font-size:2.15rem!important}
+}
 `}</style>
   </main>;
 }
