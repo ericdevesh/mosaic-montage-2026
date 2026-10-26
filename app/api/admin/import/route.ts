@@ -9,7 +9,7 @@ export async function GET(request:Request){
   const auth=await requireAdmin(request);
   if("error" in auth) return NextResponse.json({error:auth.error},{status:auth.status});
   const wb=new ExcelJS.Workbook(),sheet=wb.addWorksheet("Import Template");
-  sheet.addRow(headers);sheet.addRow(["Sample Student","student@example.com","+91 9876543210","Example College","MCA","Semester 1","Jaipur","Rajasthan","idea-volcano"]);
+  sheet.addRow(headers);
   sheet.views=[{state:"frozen",ySplit:1}];sheet.autoFilter={from:"A1",to:"I1"};
   const buffer=await wb.xlsx.writeBuffer();
   return new Response(buffer,{headers:{"Content-Type":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","Content-Disposition":'attachment; filename="mosaic-import-template.xlsx"',"Cache-Control":"no-store"}});
