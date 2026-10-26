@@ -10,7 +10,7 @@ Responsive event website and registration system for the 27th Annual Management 
 - Supabase Auth-backed organizer sign-in with server-side authorization against `public.admin_users`.
 - Admin overview, event open/close and capacity controls, registration search and status updates with audit entries.
 - Authorized Excel export with five worksheets.
-- Authorized .xlsx/.csv bulk import with row-level result reporting and a downloadable template.
+- Authorized .xlsx/.csv bulk import with preview, row-level validation, duplicate checks, confirmation, and a downloadable template (individual registrations only).
 
 ## Stack
 
@@ -57,7 +57,7 @@ Use the admin dashboard to download the template. Required columns:
 - `state`
 - `event_ids` — comma- or semicolon-separated database event IDs, for example `idea-volcano`
 
-Imported records are subject to the same event-open and team-size rules as online registration. Review each row's outcome; the import summary does not imply failed or skipped rows were saved.
+Imported rows are previewed before commit and subject to event-open and participant-limit checks. Bulk import currently supports individual registrations; team-event imports require full team-member mapping and are not supported by this template. Review every row outcome; failed or skipped rows are not saved.
 
 ## Deployment
 
@@ -78,5 +78,5 @@ Import the repository into Vercel and set the environment variables there. Confi
 - Some schedule times in the brochure are ambiguous; the public page flags starred entries for organizer confirmation.
 - The initial accommodation-intimation cutoff is 5 November 2026; confirm this with organizers before publishing.
 - The initial registration form collects additional team members' names, emails and mobile numbers; course/year/city/state are inherited from the primary contact for those additional members.
-- Email notifications, document upload/verification, payment screenshot handling, and rollback of multi-row imports are not yet implemented.
+- Email notifications, document upload/verification, payment screenshot handling, registration deadline controls in the dashboard, rate limiting, and rollback of multi-row imports are not yet implemented.
 - Complete a security and functional review before collecting real student data.
