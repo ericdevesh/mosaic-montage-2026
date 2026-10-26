@@ -14,7 +14,8 @@ export default function AdminPage(){
   const [token,setToken]=useState("");const [userEmail,setUserEmail]=useState("");
   const [summary,setSummary]=useState<Summary|null>(null);const [message,setMessage]=useState("");
   const [busy,setBusy]=useState(false);const [file,setFile]=useState<File|null>(null);
-  const [importResults,setImportResults]=useState<ImportResult[]>([]);\n  const [previewReady,setPreviewReady]=useState(false);
+  const [importResults,setImportResults]=useState<ImportResult[]>([]);
+  const [previewReady,setPreviewReady]=useState(false);
   const [events,setEvents]=useState<AdminEvent[]>([]);const [registrations,setRegistrations]=useState<AdminRegistration[]>([]);const [search,setSearch]=useState("");
   useEffect(()=>{
     const url=process.env.NEXT_PUBLIC_SUPABASE_URL,anon=process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
