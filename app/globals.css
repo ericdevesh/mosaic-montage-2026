@@ -25,3 +25,78 @@ footer{background:#04060a;border-top:1px solid var(--line);padding:48px 0 0}.foo
 .campus-overlay h2{font-size:clamp(2.3rem,4.4vw,4.4rem);line-height:1;letter-spacing:-.07em;margin:22px 0 16px}
 .campus-overlay p{color:#a6b5c9;line-height:1.8;max-width:390px;margin:0}
 @media(max-width:760px){.campus-banner{grid-template-columns:1fr}.campus-photo,.campus-photo img{min-height:230px}.campus-photo:after{background:linear-gradient(0deg,#080e19,transparent 60%)}.campus-overlay{padding:12px 24px 38px}}
+
+
+/* Mobile-first refinements: comfortable tap targets, balanced hero and clean overflow */
+@media(max-width:650px){
+  html{scroll-padding-top:74px}
+  .container{width:calc(100% - 32px)}
+  .nav-inner{min-height:68px;gap:10px}
+  .brand{gap:9px}
+  .brand-mark{width:36px;height:36px;border-radius:11px}
+  .brand strong{font-size:.72rem;letter-spacing:.015em}
+  .brand small{font-size:.52rem;letter-spacing:.13em}
+  .nav-cta{min-height:42px;padding:10px 14px;font-size:.78rem;white-space:nowrap}
+  .hero-grid{padding-top:48px;padding-bottom:66px;min-height:0}
+  .eyebrow,.section-kicker{font-size:.62rem;letter-spacing:.15em;line-height:1.6}
+  .hero h1{font-size:clamp(3.15rem,14.2vw,5rem);line-height:.94;margin:20px 0}
+  .hero-copy{font-size:.94rem;line-height:1.75;max-width:100%}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:22px}
+  .hero-actions .btn{width:100%;min-height:48px}
+  .hero-meta{justify-content:space-between;gap:9px;margin-top:28px}
+  .hero-meta b{font-size:.98rem}
+  .hero-meta small{font-size:.48rem;letter-spacing:.06em}
+  .visual-stage{min-height:310px;margin:12px -8px 0;overflow:hidden}
+  .ring-a{width:260px;height:260px}
+  .ring-b{width:230px;height:285px}
+  .ring-c{width:205px;height:205px}
+  .glass-orb{width:154px;height:154px}
+  .glass-orb span{font-size:2.8rem}
+  .float-card{max-width:175px;padding:10px;border-radius:12px}
+  .card-top{right:1%;top:7%}
+  .card-bottom{left:1%;bottom:7%}
+  .float-card small{font-size:.43rem}
+  .float-card b{font-size:.62rem}
+  .orbit-label{font-size:.45rem;letter-spacing:.1em}
+  .scroll-cue{bottom:17px;font-size:.53rem}
+  .section{padding-block:54px}
+  .section-head{gap:14px;margin-bottom:25px}
+  .section h2{font-size:clamp(2.45rem,10.5vw,3.5rem)}
+  .muted{font-size:.91rem;line-height:1.75}
+  .feature-grid,.event-grid,.rule-grid{gap:12px}
+  .feature-card,.event-card{padding:21px;border-radius:16px}
+  .feature-card{min-height:0}
+  .feature-icon{margin-bottom:23px}
+  .event-card{min-height:0}
+  .event-card p{font-size:.86rem}
+  .event-card-top{margin-bottom:18px}
+  .event-meta{font-size:.76rem;line-height:1.5}
+  .campus-banner{margin-inline:0}
+  .campus-photo,.campus-photo img{min-height:220px}
+  .campus-overlay{padding:8px 20px 30px}
+  .campus-overlay h2{font-size:clamp(2.3rem,10vw,3.3rem);margin:15px 0 12px}
+  .campus-overlay p{font-size:.9rem;line-height:1.7}
+  .schedule{gap:14px}
+  .day{padding:16px;border-radius:16px}
+  .day-heading h3{font-size:1.18rem}
+  .schedule-row{padding:15px 0;gap:9px}
+  .schedule-info strong{font-size:.76rem;line-height:1.4}
+  .schedule-info span{font-size:.68rem;line-height:1.5}
+  .pill{font-size:.65rem;padding:7px 10px}
+  .notice{font-size:.78rem;line-height:1.65}
+  .rule{padding:17px 0;gap:12px}
+  .rule p{font-size:.84rem;line-height:1.7}
+  .cta{padding:25px 21px;border-radius:20px}
+  .cta-copy h2{font-size:clamp(3rem,13vw,3.8rem)}
+  .cta-copy p{font-size:.9rem;line-height:1.75}
+  .cta-copy .btn{width:100%;min-height:48px}
+  .footer-grid{gap:14px;padding-bottom:26px}
+  .footer-bottom{padding:18px 0}
+}
+@media(min-width:651px) and (max-width:950px){
+  .nav-inner nav{gap:14px}
+  .hero h1{font-size:clamp(4rem,9vw,6.2rem)}
+  .visual-stage{min-height:400px}
+  .campus-banner{grid-template-columns:1fr 1fr}
+  .campus-overlay{padding:32px 26px}
+}
