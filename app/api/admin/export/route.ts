@@ -32,7 +32,7 @@ export async function GET(request:Request){
   addSheet("All Registrations",["Registration ID","Submitted at","Institution","Student name","Email","Mobile","Course","Year/semester","City","State","Selected events","Team name","Team leader","Team members","Fee calculated","Payment status","Institution verification","Accommodation requested","Registration status"],registrations.map(reg=>{
     const inst=byId(institutions,reg.institution_id),person=byId(participants,reg.primary_participant_id);
     const regTeams=teams.filter(x=>x.registration_id===reg.id),eventNames=regTeams.map(x=>byId(events,x.event_id)?.name||x.event_id).join(", ");
-    return [reg.reference,reg.created_at,inst?.name,person?.full_name,person?.email,person?.mobile,person?.course,person?.year_semester,person?.city,person?.state,eventNames,regTeams.map(x=>x.team_name).filter(Boolean).join(", "),person?.full_name,regTeams.length,reg.amount_due,reg.payment,reg.verification,reg.accommodation_requested?"Yes":"No",reg.status];
+    return [reg.reference,reg.created_at,inst?.name,person?.full_name,person?.email,person?.mobile,person?.course,person?.year_semester,person?.city,person?.state,eventNames,regTeams.map(x=>x.team_name).filter(Boolean).join(", "),person?.full_name,new Set(memberships.filter(link=>regTeams.some(team=>team.id===link.team_id)).map(link=>link.participant_id)).size,reg.amount_due,reg.payment,reg.verification,reg.accommodation_requested?"Yes":"No",reg.status];
   }));
   const rosterRows=participants.map(person=>{
     const inst=byId(institutions,person.institution_id);
@@ -44,7 +44,7 @@ export async function GET(request:Request){
   addSheet("Participant Roster",["Participant ID","Name","Email","Mobile","Institution","Course","Year/semester","City","State","Registration reference","Selected events"],rosterRows);
   addSheet("Event-wise Summary",["Event","Registration count","Unique participants","Team count","Capacity","Registration open"],events.map(event=>{
     const et=teams.filter(team=>team.event_id===event.id),regIds=new Set(et.map(team=>team.registration_id));
-    return [event.name,regIds.size,new Set(et.map(team=>team.team_leader_id)).size,et.length,event.capacity_teams??"Not set",event.is_open?"Open":"Closed"];
+    return [event.name,regIds.size,new Set(memberships.filter(link=>et.some(team=>team.id===link.team_id)).map(link=>link.participant_id)).size,et.length,event.capacity_teams??"Not set",event.is_open?"Open":"Closed"];
   }));
   addSheet("College-wise Summary",["Institution","Unique participants","Registrations","Events","Payments due","Verified payments","Accommodation requests"],institutions.map(inst=>{
     const ir=registrations.filter(reg=>reg.institution_id===inst.id);
