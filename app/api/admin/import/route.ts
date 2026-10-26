@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import ExcelJS from "exceljs";
+import { Readable } from "node:stream";
 import { requireAdmin } from "@/lib/require-admin";
 
 export const runtime="nodejs";
@@ -23,7 +24,7 @@ export async function POST(request:Request){
   if(!["xlsx","csv"].includes(ext||"")) return NextResponse.json({error:"Only .xlsx and .csv files are supported."},{status:400});
   const bytes=Buffer.from(await file.arrayBuffer()),wb=new ExcelJS.Workbook();
   try{
-    if(ext==="csv") await wb.csv.read(require("stream").Readable.from(bytes.toString("utf8")));
+    if(ext==="csv") await wb.csv.read(Readable.from(bytes.toString("utf8")));
     else await wb.xlsx.load(bytes);
   }catch{return NextResponse.json({error:"The spreadsheet could not be read."},{status:400});}
   const sheet=wb.worksheets[0];
@@ -36,7 +37,7 @@ export async function POST(request:Request){
   const db=auth.admin,results:{row:number,status:string,detail:string}[]=[];
   for(let rowNum=2;rowNum<=sheet.rowCount;rowNum++){
     const row=sheet.getRow(rowNum);
-    if(row.cellCount===0||row.values.slice(1).every(v=>String(v??"").trim()==="")) continue;
+    const rowValues=row.values as ExcelJS.CellValue[];\n    if(row.cellCount===0||rowValues.slice(1).every(v=>String(v??"").trim()==="")) continue;
     const val=(key:string)=>String(row.getCell(map.get(key)!).text??"").trim();
     const item={full_name:val("full_name"),email:val("email").toLowerCase(),mobile:val("mobile"),institution:val("institution"),course:val("course"),year_semester:val("year_semester"),city:val("city"),state:val("state"),events:val("event_ids").split(/[;,]/).map(x=>x.trim()).filter(Boolean)};
     const errors:string[]=[];
