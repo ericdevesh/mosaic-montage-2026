@@ -96,6 +96,18 @@ begin
     raise exception 'This institute has reached the limit of 15 unique participants.';
   end if;
 
+  if exists (
+    select 1
+    from public.teams t
+    join public.registration_team_members rtm on rtm.team_id=t.id
+    join public.participants p on p.id=rtm.participant_id
+    where t.event_id in (select jsonb_array_elements_text(v_events))
+      and p.institution_id=v_inst_id
+      and lower(p.email) in (select lower(m->>'email') from jsonb_array_elements(v_members) m)
+  ) then
+    raise exception 'One or more participants are already registered for a selected event.';
+  end if;
+
   v_fee := 150 * (select count(distinct lower(m->>'email')) from jsonb_array_elements(v_members) m);
   insert into public.registrations(primary_participant_id,institution_id,amount_due,accommodation_requested,consent_terms,consent_privacy)
   values(v_primary_id,v_inst_id,v_fee,coalesce((payload->>'accommodation_requested')::boolean,false),true,true)
