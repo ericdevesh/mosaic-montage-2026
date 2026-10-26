@@ -59,6 +59,8 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="campus" className="campus-banner"><div className="campus-photo"><img src="/campus.jpg" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div><div className="campus-overlay"><span className="section-kicker">THE PLACE WHERE IDEAS MEET</span><h2>Welcome to <span className="gradient-text">IIIM Jaipur.</span></h2><p>One campus. Nine events. A whole lot of creative energy.</p></div></section>
+
       <section id="about" className="section container about-section">
         <div className="section-kicker">01 / THE BIG PICTURE</div>
         <div className="section-head"><h2>Not just a fest.<br/><span className="gradient-text">A creative collision.</span></h2><p className="muted">A meeting ground for curious minds to challenge convention, experiment with ideas and meet the people who make things happen.</p></div>
