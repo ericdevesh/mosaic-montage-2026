@@ -92,7 +92,7 @@ export default function RegisterPage() {
         <h2>05 / Review & consent</h2>
         <div className="fee-summary"><span>Participants in this submission</span><strong>{teamSize}</strong><span>Estimated fee for unique participants</span><strong>₹{teamSize*150}</strong><small>Final fee is calculated by the server from unique participant records. Additional event selections do not automatically multiply the participant fee.</small></div>
         <label className="check-line"><input name="consent_terms" type="checkbox" required value="yes"/> I agree to the participation rules and understand that schedule details may change.</label>
-        <label className="check-line"><input name="consent_privacy" type="checkbox" required value="yes"/> I consent to use of these details for event registration and coordination.</label>
+        <label className="check-line"><input name="consent_privacy" type="checkbox" required value="yes"/> I consent to use of these details for event registration and coordination; see the <a href="/privacy" target="_blank" rel="noreferrer">privacy notice</a>.</label>
         <div className="notice">Do not pay to an unofficial account. Use only payment instructions verified by the organizers. The system will not mark payment as received automatically.</div>
         <button disabled={busy||selected.length===0} className="btn btn-primary submit-button" type="submit">{busy?"Submitting registration…":"Submit registration →"}</button>
         <small className="muted">A unique reference is displayed only after the database confirms that the registration was saved.</small>
