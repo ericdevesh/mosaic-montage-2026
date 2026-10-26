@@ -11,13 +11,13 @@ const events = [
 ];
 
 const dayOne = [
-  ["IDEA VOLCANO","10:00 AM – 11:30 PM*","IIIM Auditorium"],
-  ["MEMECONOMICS","10:00 AM – 11:30 PM*","Class Room"],
-  ["CODE ACUMEN","10:00 AM – 11:30 PM*","IBM Lab"],
-  ["BULLS & BEARS","12:00 AM – 1:30 PM*","Seminar Hall"],
-  ["ROLLING REELS (HYBRID)","12:00 AM – 1:30 PM*","Computer Centre"],
-  ["FUSION FIESTA","12:00 AM – 1:30 PM*","Class Room"],
-  ["WEB VISION","12:00 AM – 1:30 PM*","Computer Centre"],
+  ["IDEA VOLCANO","10:00 AM – 11:30 AM","IIIM Auditorium"],
+  ["MEMECONOMICS","10:00 AM – 11:30 AM","Class Room"],
+  ["CODE ACUMEN","10:00 AM – 11:30 AM","IBM Lab"],
+  ["BULLS & BEARS","12:00 PM – 1:30 PM","Seminar Hall"],
+  ["ROLLING REELS (HYBRID)","12:00 PM – 1:30 PM","Computer Centre"],
+  ["FUSION FIESTA","12:00 PM – 1:30 PM","Class Room"],
+  ["WEB VISION","12:00 PM – 1:30 PM","Computer Centre"],
   ["D4U & STRINGS UNPLUGGED","2:30 PM – 5:00 PM","Dr. APJ Abdul Kalam Auditorium, IIS, Kshipra Path"],
   ["DJ & DINNER","5:00 PM – 7:30 PM","Dr. APJ Abdul Kalam Auditorium, IIS, Kshipra Path"]
 ];
