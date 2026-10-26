@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     });
     if(error) {
       const safeMessage = error.message || "Registration could not be saved.";
-      const status = /not open|capacity|deadline|limit of 15|team size|duplicate|invalid|consent|required/i.test(safeMessage) ? 409 : 503;
+      const status = /not open|capacity|deadline|limit of 15|team size|duplicate|already registered|invalid|consent|required/i.test(safeMessage) ? 409 : 503;
       return NextResponse.json({error:safeMessage},{status});
     }
     return NextResponse.json({reference:result.reference,amount_due:result.amount_due},{status:201});
