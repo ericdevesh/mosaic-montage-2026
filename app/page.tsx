@@ -48,7 +48,7 @@ export default function Home() {
             <div className="hero-meta"><span><b>20—21</b><small>NOVEMBER 2026</small></span><span className="meta-line"/><span><b>09</b><small>COMPETITIONS</small></span><span className="meta-line"/><span><b>IIIM</b><small>JAIPUR, INDIA</small></span></div>
           </div>
           <div className="visual-stage campus-hero-art" aria-label="IIIM Jaipur campus, venue of Mosaic Montage 2026">
-            <div className="campus-hero-photo"><img src="https://iisjaipur.org/iiim/img/bg/an-img-02.png" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div>
+            <div className="campus-hero-photo"><img src="/campus.jpeg" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div>
             <div className="campus-photo-shade"/>
             <div className="campus-hero-label"><span className="campus-label-mark">M</span><span><b>HOST CAMPUS</b><small>IIIM · JAIPUR, INDIA</small></span></div>
             <div className="campus-hero-tag">IDEAS MEET HERE <span>✳</span></div>
@@ -65,7 +65,7 @@ export default function Home() {
         <div><span className="stat-icon rose-stat">⌂</span><span><b>IIIM</b><small>Jaipur campus</small></span></div>
       </section>
 
-      <section id="campus" className="campus-banner"><div className="campus-photo"><img src="https://iisjaipur.org/iiim/img/bg/an-img-02.png" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div><div className="campus-overlay"><span className="section-kicker">THE PLACE WHERE IDEAS MEET</span><h2>Welcome to <span className="gradient-text">IIIM Jaipur.</span></h2><p>One campus. Nine events. A whole lot of creative energy.</p></div></section>
+      <section id="campus" className="campus-banner"><div className="campus-photo"><img src="/campus.jpeg" alt="International School of Informatics and Management Technical Campus, Jaipur"/></div><div className="campus-overlay"><span className="section-kicker">THE PLACE WHERE IDEAS MEET</span><h2>Welcome to <span className="gradient-text">IIIM Jaipur.</span></h2><p>One campus. Nine events. A whole lot of creative energy.</p></div></section>
 
       <section id="about" className="section container about-section">
         <div className="section-kicker">01 / THE BIG PICTURE</div>
