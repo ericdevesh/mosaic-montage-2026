@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const eventOptions: [string,string,string,number,number][] = [
   ["idea-volcano","IDEA VOLCANO","Individual · 1 member",1,1],["memeconomics","MEMECONOMICS","Individual · 1 member",1,1],
@@ -17,6 +17,15 @@ export default function RegisterPage() {
   const [amount,setAmount] = useState<number|null>(null);
   const [selected,setSelected] = useState<string[]>([]);
   const [teamSize,setTeamSize] = useState(1);
+
+  useEffect(() => {
+    const requestedEvent = new URLSearchParams(window.location.search).get("event");
+    if (!requestedEvent) return;
+    const option = eventOptions.find(([id]) => id === requestedEvent);
+    if (!option) return;
+    setSelected([option[0]]);
+    setTeamSize(option[3]);
+  }, []);
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault(); setBusy(true); setMessage(""); setReference(""); setAmount(null);
