@@ -452,3 +452,10 @@ a,button{-webkit-tap-highlight-color:transparent}
   .visual-stage{min-height:215px}
   .campus-hero-label{left:14px;bottom:14px;max-width:calc(100% - 28px)}
 }
+
+
+/* Event cards are direct links to a preselected registration form */
+a.event-card-link{display:flex;color:inherit;text-decoration:none;cursor:pointer}
+a.event-card-link:focus-visible{outline:3px solid #65b7ff;outline-offset:4px}
+.event-register-hint{display:block;margin-top:14px;color:#8fcaff;font-size:.78rem;font-weight:800;letter-spacing:.01em}
+a.event-card-link:hover .event-register-hint{color:#ff8fc4}
