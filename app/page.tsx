@@ -1,13 +1,13 @@
 const events = [
-  { n:"01", name:"IDEA VOLCANO", tagline:"Great insight begins with an idea.", desc:"An extempore competition with a twist: complete and expand an unfinished sentence with a bold, original idea.", format:"Individual · 1 participant" },
-  { n:"02", name:"MEMECONOMICS", tagline:"Business Meme War.", desc:"Turn serious business concepts into sharp, funny memes that explain the concept accurately.", format:"Individual · 1 participant" },
-  { n:"03", name:"BULLS & BEARS", tagline:"Trade Virtual, Think Rich.", desc:"A virtual stock-trading competition where timely, analytical decisions make the difference.", format:"Team · 2 participants" },
-  { n:"04", name:"CODE ACUMEN", tagline:"Code is conquered when Logic meets Action.", desc:"Test programming, coding, debugging and logical reasoning skills in a problem-solving challenge.", format:"Team · 2 participants" },
-  { n:"05", name:"WEB VISION", tagline:"Web Designing Decoded.", desc:"Showcase web-designing skills, creative thinking and the ability to bring ideas to the browser.", format:"Team · 2 participants" },
-  { n:"06", name:"ROLLING REELS", tagline:"Vision behind the Lens.", desc:"Create an original 1–2 minute inspirational or motivational reel on “Beyond the Ordinary.”", format:"Hybrid · Individual" },
-  { n:"07", name:"FUSION FIESTA", tagline:"From Trash to Trend.", desc:"Transform discarded materials into eco-friendly, stylish, decorative or innovative creations on the spot.", format:"Team · 1–2 participants" },
-  { n:"08", name:"D4U", tagline:"Feel the Beat, Live the Dance.", desc:"A choreography and dance competition. Team size and event arrangements are set by the organizers.", format:"Team · 1–4 participants" },
-  { n:"09", name:"STRINGS UNPLUGGED", tagline:"Where medley meets the Soul.", desc:"A solo singing competition for performers ready to share their voice.", format:"Individual · 1 participant" }
+  { id:"idea-volcano", n:"01", name:"IDEA VOLCANO", tagline:"Great insight begins with an idea.", desc:"An extempore competition with a twist: complete and expand an unfinished sentence with a bold, original idea.", format:"Individual · 1 participant" },
+  { id:"memeconomics", n:"02", name:"MEMECONOMICS", tagline:"Business Meme War.", desc:"Turn serious business concepts into sharp, funny memes that explain the concept accurately.", format:"Individual · 1 participant" },
+  { id:"bulls-bears", n:"03", name:"BULLS & BEARS", tagline:"Trade Virtual, Think Rich.", desc:"A virtual stock-trading competition where timely, analytical decisions make the difference.", format:"Team · 2 participants" },
+  { id:"code-acumen", n:"04", name:"CODE ACUMEN", tagline:"Code is conquered when Logic meets Action.", desc:"Test programming, coding, debugging and logical reasoning skills in a problem-solving challenge.", format:"Team · 2 participants" },
+  { id:"web-vision", n:"05", name:"WEB VISION", tagline:"Web Designing Decoded.", desc:"Showcase web-designing skills, creative thinking and the ability to bring ideas to the browser.", format:"Team · 2 participants" },
+  { id:"rolling-reels", n:"06", name:"ROLLING REELS", tagline:"Vision behind the Lens.", desc:"Create an original 1–2 minute inspirational or motivational reel on “Beyond the Ordinary.”", format:"Hybrid · Individual" },
+  { id:"fusion-fiesta", n:"07", name:"FUSION FIESTA", tagline:"From Trash to Trend.", desc:"Transform discarded materials into eco-friendly, stylish, decorative or innovative creations on the spot.", format:"Team · 1–2 participants" },
+  { id:"d4u", n:"08", name:"D4U", tagline:"Feel the Beat, Live the Dance.", desc:"A choreography and dance competition. Team size and event arrangements are set by the organizers.", format:"Team · 1–4 participants" },
+  { id:"strings-unplugged", n:"09", name:"STRINGS UNPLUGGED", tagline:"Where medley meets the Soul.", desc:"A solo singing competition for performers ready to share their voice.", format:"Individual · 1 participant" }
 ];
 
 const dayOne = [
@@ -81,7 +81,7 @@ export default function Home() {
         <div className="container">
           <div className="section-kicker">02 / PICK YOUR PLAYGROUND</div>
           <div className="section-head"><h2>Nine ways to<br/><span className="gradient-text">make your mark.</span></h2><p className="muted">Find your lane — from code and commerce to performance and pure imagination.</p></div>
-          <div className="event-grid">{events.map(e=><article className="event-card" key={e.n}><div className="event-card-top"><span className="event-no">{e.n}</span><span className="event-arrow">↗</span></div><h3>{e.name}</h3><b className="event-tagline">{e.tagline}</b><p>{e.desc}</p><div className="event-meta"><span className="meta-dot"/>{e.format}</div></article>)}</div>
+          <div className="event-grid">{events.map(e=><a className="event-card event-card-link" key={e.n} href={`/register?event=${e.id}`} aria-label={`Register for ${e.name}`}><div className="event-card-top"><span className="event-no">{e.n}</span><span className="event-arrow">↗</span></div><h3>{e.name}</h3><b className="event-tagline">{e.tagline}</b><p>{e.desc}</p><div className="event-meta"><span className="meta-dot"/>{e.format}</div><span className="event-register-hint">Select event &amp; register →</span></a>)}</div>
           <div className="events-bottom"><span>YOUR IDEA DESERVES A STAGE.</span><a href="/register">Find your event <b>↗</b></a></div>
         </div>
       </section>
